@@ -1,0 +1,26 @@
+
+<div>    
+    <input type="button" ng-model="type" ng-init="type='Customer'" hidden="true"/><br />
+    <b>{{type}} List: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Action Modifier: {{response}}</b><br>
+    <br/>
+        <ul ng-repeat="customer in allResponse" class="w3-ul w3-card" style="width:50%">
+            <li class=w3-text-black><u>Customer Name is:</u> {{customer.custName}}</li>
+            <li >Customer ID is: {{customer.idCustomer}}</li>
+            <li >Password is: {{customer.password}}</li>
+            <li > 
+            <input class="w3-btn w3-blue w3-border" id="Button1" type="button" value="update" ng-click="update(customer)" />
+            <input class="w3-btn w3-blue w3-border" id="Button1" type="button" value="viewIncome" ng-click="viewIncome(customer.custName, 'viewIncomeByCustomer')" />
+           <input class="w3-btn w3-blue w3-border" id="Button1" type="button" value="remove" ng-click="remove(customer)" /> </li>
+        </ul>
+        <div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+          <br>  
+  	  	  <br>  
+	  	  <br>  
+</div>
+
+
+
+
+

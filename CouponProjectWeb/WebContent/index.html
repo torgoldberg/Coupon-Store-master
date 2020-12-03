@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="windows-1255">
+    <title>admin facade</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
+    <script src="routing.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style type="text/css">
+	.fixed{
+	position: fixed;
+	top: 10px
+	}
+</style>
+</head>
+
+<body ng-app="routingCoupons" class="w3-blue w3-display-container" >
+
+    <div ng-controller="sessionController" class="w3-bar w3-black w3-container">
+    
+    <div ng-show="clientFacade=='adminService'"  style="position: fixed; top: 10px; z-index: 2" 
+    class="w3-bar w3-black w3-container">
+        <table>
+            <tr >
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/company/addCompany">  Create Company </a> </td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/customer/addCustomer"> Create Customer </a> </td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewCompany/getAllCompanies"> view all companies </a></td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewCustomer/getAllCustomers"> view all customers </a></td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewIncome/viewAllIncome"> view all Incomes </a></td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewErrors/viewAllErrors"> view all Errors </a></td>
+                
+            </tr>
+           </table>        
+           <input class=" w3-display-topright logOut w3-button w3-hover-red" id="Button1" type="button" value="log out" ng-click="invalidate()" /><br>
+          </div>
+            
+            
+      <div ng-show="clientFacade=='companyService'" class="w3-bar w3-black w3-container" 
+      style="position: fixed; top: 10px; z-index: 2">
+        <table>
+            <tr >
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewCoupons/getAllCoupons"> view all coupons </a></td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/coupon/addCoupon"> Create Coupn </a> </td>
+                <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewIncome/viewIncomeByCompany"> view all Incomes </a></td>
+                     <th>--------------------</th>
+                     <td>   <b>your company: {{object.compName}}</b><br>
+        					<b>your email {{object.email}}</b><br>
+        					<b>your id: {{object.idCompany}}</b><br> </td> 
+                     <th>--------------------</th>
+            </tr>
+           </table>
+        <input  class="logOut w3-display-topright logOut w3-button w3-hover-red" id="Button1" type="button" value="log out" ng-click="invalidate()" /><br>
+      </div>
+          
+           
+           <div ng-show="clientFacade=='customerService'"  style="position: fixed; top: 10px; z-index: 2" class="w3-bar w3-black w3-container">
+         
+         <div>
+        <h3>hello {{object.custName}}</b><h3>
+        <input class=" w3-display-topright logOut w3-button w3-hover-red" id="Button1" type="button" value="log out" ng-click="invalidate()" />
+         </div>
+        <table>
+            <tr >
+             <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/client/getAllCoupons"> view all coupons </a></td>
+             <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/client/getAllPurchaseCoupons"> view all purchase coupons </a></td>
+             <td> <a class="w3-button w3-hover-grey w3-bar-item" href="#/viewIncome/viewIncomeByCustomer"> view all Incomes </a></td>
+            </tr>
+             </table>
+          </div>
+          
+          
+        </div>
+        
+       
+        
+    <div ng-view  style="position:relative;top: 100px; z-index: 1;">
+    </div>
+    
+    <br><br><br><br>
+
+
+<footer style="width:100%; position: fixed; bottom: 5px; height: 40px; background-color: black; z-index: 2;" >
+    <p>&copy; all rights reserved - Itay.M , Tor.G & Itay.P</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,34 @@
+
+<div>
+      <table class="w3-table-all w3-hoverable" >
+       <tr class="w3-indigo">
+       <td ></td>
+       		<td style="width: 80px">date</td>
+       		  <td style="width: 100px">Time</td>
+              <td style="width: 150px">message</td>
+              <td>exceptionStuck</td>
+        </tr>
+       
+       <tr ng-repeat="error in allResponse" 
+       class="w3-container w3-teal w3-hover-text-white"> 
+       <td>{{error.time| date:'dd/MM/yyyy'}}</td>
+       <td>{{error.time| date:'H-mm-ss'}}</td>
+       <td>{{error.message}} </td>
+       <td>{{error.exceptionStuck}}</td>
+       <tr></table>	  	    
+  
+       
+  
+     <div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+	  	    <br>  
+  	  	  <br>  
+	  	  <br>    
+</div>
+
+<script>
+function hiddenAS() {
+	$('#fgdf').show
+}
+</script>

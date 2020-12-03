@@ -1,0 +1,61 @@
+
+<div>
+    <input type="button" ng-model="type" ng-init="type='Coupon'" hidden="true"/><br />
+    
+	<table>
+       <tr>
+       
+       <td>sort by: </td>
+       <td>
+       <select ng-model="orderBy" >
+            <option value="name">name</option>
+            <option value="description">description</option>
+            <option value="date">date</option>
+            <option value="amount">amount</option>
+        </select>
+         </td>
+         <td>
+        <input id="asc" type="radio" ng-model="direction" name="sorting" />
+        <label for="asc">Asc</label>
+        <input id="desc" type="radio" ng-model="direction" name="sorting" value="reverse" />
+        <label for="desc">Desc</label>
+        </td>
+         <tr>
+         
+         <td>Filters: </td>
+         <td> description: <select ng-model="description">
+            <option value="">ALL</option>
+            <option>customer buy coupon</option>
+    		<option>company created coupon</option>
+    		<option>company update coupon</option>
+        </select></td>
+         <td>Free text: <input type="text" ng-model="filterText" ></td>
+         </tr>    
+       </table>  
+       <table class="w3-table-all w3-hoverable" >
+       <tr class="w3-indigo">
+       <td></td>
+       		<td>id</td>
+              <td>name</td>
+              <td>description</td>
+              <td>date</td>
+              <td>amount</td>
+        </tr>
+       
+       <tr ng-repeat="income in allResponse | orderBy: orderBy :direction | filter:{description:description}|filter: filterText" 
+       class="w3-container w3-teal w3-hover-text-black"> 
+       <td>{{income.id}}</td>
+       <td>{{income.name}} </td>
+       <td>{{income.description}}</td>
+       <td>{{income.date}}</td>
+       <td>{{income.amount}} &#8362;</td>
+       <tr></table>	  	    
+  
+    
+     <div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+	  	    <br>  
+  	  	  <br>  
+	  	  <br>    
+</div>

@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<header  class ="w3-indigo w3-padding w3-container w3-display-top" >
+ <h3 style="width:500px; text-align: center;margin: auto;"> Create/Update Company </h3>
+</header>
+<div style="width:30%;margin: auto;">
+	<form class="w3-container w3-center">
+    	Company name: <input  class="w3-input w3-border" id="object.compName" type="text" ng-model="object.compName" ng-disabled="change"/><br />
+    	Password: <input  class="w3-input w3-border" id="object.password" type="password" ng-model="object.password"/><br />
+    	Email: <input  class="w3-input w3-border" id="object.email" type="email" ng-model="object.email"/><br />
+    	<input class="w3-btn" id="Button1" type="button" ng-value="sendType" ng-click="sendObject()"  />
+    </form>
+</div>
+
+ <div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+      <br>  
+  	  	  <br>  
+	  	  <br>  

@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<br>
+<header  class ="w3-indigo w3-padding w3-container w3-display-top" >
+ <h3 style="width:500px; text-align: center;margin: auto;"> Create/Update Coupon </h3>
+</header>
+<div  style="width:30%; margin: auto;" >
+    Title: <input class="w3-input w3-border" id="object.title" type="text" ng-model="object.title" ng-disabled="change" /><br />
+    Price: <input class="w3-input w3-border" id="object.price" type="number" ng-model="object.price" /><br />
+    Coupon Type: <select id="object.couponType" ng-model="object.couponType">
+    <option>RESTURANS</option>
+    <option>ELECTRICITY</option>
+    <option>FOOD</option>
+    <option>HEALTH</option>
+    <option>SPORTS</option>
+    <option>CAMPING</option>
+    <option>TRAVELING</option>
+</select><br>
+    Start Date: <input class="w3-input w3-border" type="date" ng-model="object.startDate" /><br />
+    End Date: <input  class="w3-input w3-border" type="date" ng-model="object.endDate" /><br />
+    Company ID: <input class="w3-input w3-border" type="number" ng-model="object.idCompany"/><br />
+    Amount: <input  class="w3-input w3-border"type="number" ng-model="object.amount" /><br />
+    Message: <textarea  class="w3-input w3-border" rows="2" cols="20" ng-model="object.message"> </textarea> <br />
+    
+    <form method="post" enctype="multipart/form-data" id="fileUploadForm">	
+		<input id="fileInput" type="file" name="file" ng-model="file"/><br/> 
+	    <input class="w3-btn" type="submit" value="upload" id="btnSubmit" autofocus/>	      
+	  	  </form>   
+</div>
+<div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+    		<br>
+    	  <br>  
+  	  	  <br>  
+	  	  <br>  
+

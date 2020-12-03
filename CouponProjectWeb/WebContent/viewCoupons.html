@@ -1,0 +1,87 @@
+
+<div>
+    <input type="button" ng-model="type" ng-init="type='Coupon'" hidden="true"/><br />
+    
+    <table>
+       <tr>
+       
+       <td>sort by: </td>
+       <td>
+       <select ng-model="orderBy" >
+            <option value="startDate">Start Date</option>
+            <option value="endDate">End Date</option>
+            <option value="couponType">Coupon Type</option>
+            <option value="idCompany">Company ID</option>
+            <option value="price">Price</option>     
+        </select>
+         </td>
+         <td>
+        <input id="asc" type="radio" ng-model="direction" name="sorting" />
+        <label for="asc">Asc</label>
+        <input id="desc" type="radio" ng-model="direction" name="sorting" value="reverse" />
+        <label for="desc">Desc</label>
+        </td>
+         <tr>
+         <td>Filters: </td>
+         <td> Coupon Types: <select ng-model="couponTypeFilter">
+            <option value="">ALL</option>
+            <option>RESTURANS</option>
+    		<option>ELECTRICITY</option>
+    		<option>FOOD</option>
+    		<option>HEALTH</option>
+    		<option>SPORTS</option>
+    		<option>CAMPING</option>
+    		<option>TRAVELING</option>
+        </select></td>
+         <td>Free text: <input type="text" ng-model="filterText" ></td>
+         <td> min price: <input ng-model="minPrice" type="number"  style="width: 10em"  /> 
+         <br/>	Max price <input ng-model="maxPrice" type="number" style="width: 10em" value="50"/></td>
+          <td>Valid after date: <input ng-model="validAfterDate" type="date" /></td>         
+         </tr>    
+       </table>
+    <table>
+    <tr ng-repeat="coupon in allResponse | orderBy: orderBy :direction | filter:filterText | filter:{couponType:couponTypeFilter} | filter:priceFilter | filter:dateFilter ">
+    <td> 
+    <div class="w3-card" style="width:220px">
+   <img  alt="{{coupon.image}}" ng-src="rest/{{clientFacade}}/image/{{coupon.image}}" style="width: 200px;	margin: auto;" > 
+    <div class="w3-container">
+      <h4><b>{{coupon.title}}</b></h4>
+      <p> Coupon Type: {{coupon.couponType}}</p>
+    </div>
+  </div>
+    </td>
+    <td>  <ul class=w3-border-bottom >
+           <li>
+           ID Coupon: {{coupon.idCoupon}} <br>
+           Amount: {{coupon.amount}}<br>
+           Price: {{coupon.price}}<br>
+           Start Date: {{coupon.startDate | date: 'MM/dd/yyyy'}}<br>
+           End Date: {{coupon.endDate | date: 'MM/dd/yyyy'}}<br>
+           Company ID: {{coupon.idCompany}} <br>
+          </li>
+            <li ng-show="clientFacade=='companyService'" class=w3-bar>
+             <input class="w3-btn w3-bar-item" id="Button1" type="button" value="update" ng-click="update(coupon)"  /> 
+             <input class="w3-btn w3-bar-item" id="Button1" type="button" value="remove" ng-click="remove(coupon)"  />
+            </li>
+            
+            <li  ng-show="clientFacade=='customerService' && typeViewObject != 'getAllPurchaseCoupons'"> <input id="Button1" type="button" value="purchase coupon" ng-click="purchase(coupon)" /> </li>
+        </ul >
+     </td>
+     <td style="top: 1px;"><b style="text-align: right; top: 1px">Details:</b></td>
+     <td>
+     <div class="w3-panel w3-card-3" style="width:200px">
+  <p class=" w3-large w3-serif">
+ {{coupon.message}}</p>
+</div>
+     </td>
+    <tr>
+    </table>
+     
+    
+     <div id="messageToClient" class="w3-container w3-red"  style="position:fixed;bottom:50%" hidden="true">
+	  	  	      {{response}}
+	  	  </div> 
+	   	  <br>  
+  	  	  <br>  
+	  	  <br>  
+</div>

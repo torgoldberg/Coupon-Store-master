@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="windows-1255">
+	<title>Login</title>
+	  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	<script type="text/javascript">
+	var response = "Wrong username or password";
+	$(document).ready(function () {
+	    $("#btnSubmit").click(function (event) {
+	    	var name = $('#name').val();
+	    	var password =$('#password').val();
+	    	var clientType = $('#clientType').val();
+	    	var data = "name="+name+"&password="+password+"&clientType="+clientType
+	    	event.preventDefault();
+		    $("#btnSubmit").prop("disabled", true);
+		    $.ajax({
+		        type: "GET",
+		        url: "Login",
+		        data: data,
+		        processData: false,
+		        contentType: false,
+		        cache: false,
+		        timeout: 600000,
+		        success: function (data, textStatus, request) {
+		            $("#btnSubmit").prop("disabled", false);
+		            response = request.getResponseHeader('status');
+		            if(response=='Link successful'){
+		            	window.location.replace("index.html")
+		            }
+		            messageToClient();
+		        },  error: function (e) {
+		            console.log("ERROR : ", e);
+		            $("#btnSubmit").prop("disabled", false);
+		            messageToClient();
+		        }
+		    });
+	    });
+	});
+		
+	function messageToClient()  {
+		$('#message').show();
+		document.getElementById('message').innerHTML=response;
+		var timeOut = setTimeout(function() {
+			$('#message').hide();		
+		clearTimeout(timeOut)
+		}, 7000)			
+	}
+	</script>
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body class="w3-container w3-blue" style="height:100%;wigth:100%">
+
+<header  class ="w3-black w3-padding w3-container w3-display-top" >
+ <h3 style="width:500px" >Welcome to the Coupon System Web Server</h3>
+</header>
+
+<div class="w3-display-middle">
+	<form class="w3-container w3-center" action="Login"  id="login" >
+ 	<p>
+  	<label> User name:</label>
+  	<input class="w3-input" type="text" id="name"></p>
+  	<p>
+  	<label> Password:</label>
+  	<input class="w3-input" type="password" id="password"></p>
+  	<p>
+  	<label>clientType:</label>
+  	<select class="w3-select" id="clientType">
+            <option>ADMINASTOR</option>
+            <option>CUSTOMER</option>
+            <option>COMPANY</option>
+        </select>  </p>
+        
+   <input class="w3-btn w3-blue" type="submit" value="Login" id="btnSubmit">
+        
+</form>
+ <div id="message" class="w3-container w3-red " style="position:fixed;bottom:40%" hidden="true">
+	  	  </div>   
+	  	  
+	  	   </div>
+	  	   
+	  	    <footer style="width:100%" class="w3-padding-24 w3-black w3-display-bottomleft">
+    <p>&copy; all rights reserved</p>
+    </footer>
+    
+</body>
+<!-- method="post" action="Login" -->
+</html>
